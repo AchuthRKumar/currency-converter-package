@@ -33,7 +33,7 @@ connectDB().then(() => {
   syncCurrencyRates();
   scheduleDailySync();
 });
-
+app.options('*', cors());
 app.get('/', (req: Request, res: Response) => {
   res.send('pong');
 });
