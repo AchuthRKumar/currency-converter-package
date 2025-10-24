@@ -1,0 +1,12 @@
+.product-card {
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px;
+  background-color: #282c34;
+}
+.price {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #61dafb;
+}

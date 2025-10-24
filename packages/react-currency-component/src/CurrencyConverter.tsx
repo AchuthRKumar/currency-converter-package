@@ -1,21 +1,14 @@
 import React from 'react';
-import { UseCurrencyConversion } from './useCurrencyConversion';
+import { useCurrency } from './CurrencyContext';
 
 export interface CurrencyConverterProps {
-    value: number;
-    apiBaseUrl: string;
+  value: number;
 }
 
-export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ value, apiBaseUrl }) => {
-  const { isLoading, error, convertedPrice, displayCurrency } = UseCurrencyConversion({
-    basePrice: value,
-    apiBaseUrl: apiBaseUrl,
-  });
+export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ value }) => {
+  const { isLoading, error, rates, userCurrency } = useCurrency();
 
-  if (isLoading || error) {
-    if (error) {
-      console.error(`[react-currency-converter] Error: ${error}`);
-    }
+  if (isLoading || error || !rates) {
     return (
       <span className="currency-converter-fallback">
         {new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR' }).format(value)}
@@ -23,12 +16,24 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ value, api
     );
   }
 
+  const targetRate = rates[userCurrency];
+  if (!targetRate) {
+    console.warn(`[CurrencyConverter] Rate for ${userCurrency} not found. Falling back to EUR.`);
+    return (
+      <span className="currency-converter-fallback">
+        {new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR' }).format(value)}
+      </span>
+    );
+  }
+
+  const convertedPrice = value * targetRate;
+
   return (
     <span className="currency-converter-success">
       {new Intl.NumberFormat(undefined, {
         style: 'currency',
-        currency: displayCurrency,
-      }).format(convertedPrice!)}
+        currency: userCurrency,
+      }).format(convertedPrice)}
     </span>
   );
 };

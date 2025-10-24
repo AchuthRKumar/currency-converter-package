@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/database.js';
 import syncCurrencyRates from './services/ecb.service.js';
@@ -11,19 +12,23 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/api/rates', async (req: Request, res: Response) => {
   try {
     const rates = await CurrencyRate.find().select('currency rate -_id');
-    
-    const ratesObject = rates.reduce((acc, { currency, rate }) => {
-      acc[currency] = rate;
-      return acc;
-    }, {} as Record<string, number>);
+
+    const ratesObject = rates.reduce(
+      (acc, { currency, rate }) => {
+        acc[currency] = rate;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
 
     res.json(ratesObject);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching rates.' });
+    res.status(500).json({ message: `Error fetching rates.${error}` });
   }
 });
 
