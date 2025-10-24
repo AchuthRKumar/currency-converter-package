@@ -6,10 +6,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+  "react",
+  "react-component",
+  "currency",
+  "currency-converter",
+  "money",
+  "price",
+  "formatter",
+  "exchange-rate",
+  "forex",
+  "geolocation",
+  "automatic",
+  "localization"
+],
+  "author": "Achuth R kumar",
   "license": "ISC",
-  "description": "",
+  "description": "A plug-and-play React component that automatically displays a numerical price in the user's local currency. It's designed to be zero-config for the frontend developer: simply wrap your app in the provider and use the component where you need a price displayed. The component handles geolocation, fetches the latest exchange rates from a dedicated backend, and gracefully falls back to a default currency (EUR) if anything goes wrong.",
   "workspaces": [
     "packages/*"
   ],
