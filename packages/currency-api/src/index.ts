@@ -12,19 +12,21 @@ const app = express();
 
 app.use(express.json());
 
-const whitelist = ['http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5173', 'https://currency-converter-package-currency.vercel.app'];
 
-const corsOptions: cors.CorsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
-
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  }),
+);
 
 connectDB().then(() => {
   console.log('Performing initial currency rate sync on startup...');

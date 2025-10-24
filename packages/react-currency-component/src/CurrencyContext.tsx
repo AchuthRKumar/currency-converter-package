@@ -29,7 +29,7 @@ export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({ apiBaseUrl =
     const initialize = async () => {
       try {
         const [ratesResponse, locationResponse] = await Promise.all([
-          fetch(`${apiBaseUrl}/api/rates`),
+          fetch(`${apiBaseUrl}/rates`),
           fetch(`http://ip-api.com/json/?fields=countryCode`),
         ]);
 
