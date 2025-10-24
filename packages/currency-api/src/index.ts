@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json());
 
-const whitelist = ['http://localhost:5173', 'https://currency-converter-package.vercel.app/'];
+const whitelist = ['http://localhost:5173', 'https://currency-converter-package.vercel.app'];
 
 const corsOptions: cors.CorsOptions = {
   origin: function (origin, callback) {
