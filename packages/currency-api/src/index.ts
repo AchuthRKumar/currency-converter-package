@@ -9,10 +9,15 @@ import { CurrencyRate } from './models/currencyRate.model.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cors());
+
+connectDB().then(() => {
+  console.log('Performing initial currency rate sync on startup...');
+  syncCurrencyRates();
+  scheduleDailySync();
+});
 
 app.get('/api/rates', async (req: Request, res: Response) => {
   try {
@@ -32,18 +37,4 @@ app.get('/api/rates', async (req: Request, res: Response) => {
   }
 });
 
-const startServer = async () => {
-  await connectDB();
-
-  console.log('Performing initial currency rate sync...');
-  await syncCurrencyRates();
-
-  scheduleDailySync();
-
-  app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
-    console.log(`API available at http://localhost:${PORT}/api/rates`);
-  });
-};
-
-startServer();
+export default app;

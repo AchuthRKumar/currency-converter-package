@@ -2,11 +2,9 @@ import { CurrencyProvider, CurrencyConverter } from 'react-currency-component';
 import './App.css';
 
 function App() {
-  const API_URL = 'http://localhost:3001';
-
   return (
     // 1. Wrap your entire application (or the relevant part) in the Provider
-    <CurrencyProvider apiBaseUrl={API_URL}>
+    <CurrencyProvider>
       <div className="App">
         <header className="App-header">
           <h1>Product Page (Optimized)</h1>
