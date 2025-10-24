@@ -11,7 +11,20 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+const whitelist = ['http://localhost:5173'];
+
+const corsOptions: cors.CorsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 connectDB().then(() => {
   console.log('Performing initial currency rate sync on startup...');
