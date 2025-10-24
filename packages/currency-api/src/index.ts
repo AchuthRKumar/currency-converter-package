@@ -12,28 +12,26 @@ const app = express();
 
 app.use(express.json());
 
-const allowedOrigins = ['http://localhost:5173', 'https://currency-converter-package-currency.vercel.app'];
+const whitelist = ['http://localhost:5173', 'https://currency-converter-package.vercel.app/'];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-  }),
-);
+const corsOptions: cors.CorsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 connectDB().then(() => {
   console.log('Performing initial currency rate sync on startup...');
   syncCurrencyRates();
   scheduleDailySync();
 });
-app.options('*', cors());
+
 app.get('/', (req: Request, res: Response) => {
   res.send('pong');
 });
