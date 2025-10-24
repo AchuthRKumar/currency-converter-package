@@ -15,7 +15,9 @@ export interface CurrencyProviderProps {
   children: ReactNode;
 }
 
-export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({ apiBaseUrl, children }) => {
+const PUBLIC_API_URL = 'https://currency-converter-package.vercel.app';
+
+export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({ apiBaseUrl = PUBLIC_API_URL, children }) => {
   const [contextValue, setContextValue] = useState<ICurrencyContext>({
     isLoading: true,
     error: null,
