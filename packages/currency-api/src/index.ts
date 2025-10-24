@@ -32,7 +32,12 @@ connectDB().then(() => {
   scheduleDailySync();
 });
 
-app.get('/api/rates', async (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
+  res.send('API Root is ALIVE!');
+});
+
+// THE CRITICAL FIX: The route is now /rates, not /api/rates
+app.get('/rates', async (req: Request, res: Response) => {
   try {
     const rates = await CurrencyRate.find().select('currency rate -_id');
 
