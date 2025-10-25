@@ -1,6 +1,6 @@
 {
   "name": "react-auto-currency-converter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "build": "tsc && vite build"
@@ -37,15 +37,15 @@
   "description": "A plug-and-play React component that automatically displays a numerical price in the user's local currency. It's designed to be zero-config for the frontend developer: simply wrap your app in the provider and use the component where you need a price displayed. The component handles geolocation, fetches the latest exchange rates from a dedicated backend, and gracefully falls back to a default currency (EUR) if anything goes wrong.",
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.4",
-    "react": "^18.2.0", 
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
     "vite-plugin-dts": "^4.5.4"
   },
   "peerDependencies": {
-    "react": ">=18.0.0", 
-    "react-dom": ">=18.0.0" 
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "repository": {
     "type": "git",
