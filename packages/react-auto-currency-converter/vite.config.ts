@@ -12,10 +12,10 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'), 
-      name: 'ReactCurrencyConverter', 
+      entry: path.resolve(__dirname, 'src/index.ts'),
+      name: 'ReactCurrencyConverter',
       formats: ['es', 'umd'],
-      fileName: (format) => `react-currency-converter.${format}.js`,
+      fileName: (format) => `react-auto-currency-converter.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom'],

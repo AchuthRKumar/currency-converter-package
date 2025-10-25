@@ -1,4 +1,4 @@
-import { CurrencyProvider, CurrencyConverter } from 'react-currency-component';
+import { CurrencyProvider, CurrencyConverter } from 'react-auto-currency-converter';
 import './App.css';
 
 function App() {
@@ -31,8 +31,8 @@ const ProductList = () => {
         <h2>Wireless Mouse</h2>
         <p>Click away with freedom.</p>
         <p className="price">
-          Price: <CurrencyConverter value={49.5} />
-          Price: <CurrencyConverter value={49.5} />
+          Price: <CurrencyConverter value={1} baseCurrency="USD" />
+          Price: <CurrencyConverter value={90} baseCurrency="INR" targetCurrency="USD" />
           Price: <CurrencyConverter value={100000} />
         </p>
       </div>
