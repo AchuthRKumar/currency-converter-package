@@ -13,7 +13,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'ReactCurrencyConverter',
+      name: 'ReactAutoCurrencyConverter',
       formats: ['es', 'umd'],
       fileName: (format) => `react-auto-currency-converter.${format}.js`,
     },
