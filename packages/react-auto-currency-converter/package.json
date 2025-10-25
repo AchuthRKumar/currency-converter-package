@@ -48,7 +48,7 @@
     "react-dom": ">=16.8.0"
   },
   "repository": {
-  "type": "git",
-  "url": "https://github.com/AchuthRKumar/currency-converter-package"
-}
+    "type": "git",
+    "url": "git+https://github.com/AchuthRKumar/currency-converter-package.git"
+  }
 }
