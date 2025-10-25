@@ -17,10 +17,24 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "react-component",
+    "currency",
+    "currency-converter",
+    "auto-currency-converter",
+    "money",
+    "price",
+    "formatter",
+    "exchange-rate",
+    "forex",
+    "geolocation",
+    "automatic",
+    "localization"
+  ],
+  "author": "Achuth R Kumar achuthrkumar@gmail.com",
   "license": "ISC",
-  "description": "",
+  "description": "A plug-and-play React component that automatically displays a numerical price in the user's local currency. It's designed to be zero-config for the frontend developer: simply wrap your app in the provider and use the component where you need a price displayed. The component handles geolocation, fetches the latest exchange rates from a dedicated backend, and gracefully falls back to a default currency (EUR) if anything goes wrong.",
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.4",
     "react": "^18.2.0",
@@ -32,5 +46,9 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
-  }
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/AchuthRKumar/currency-converter-package"
+}
 }
